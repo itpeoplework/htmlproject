@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>探索香港美食 | Discover Hong Kong Cuisine</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft JhengHei', sans-serif;
+        }
+        
+        :root {
+            --hongkong-red: #e60012;
+            --hongkong-gold: #ffd700;
+            --dark-bg: #1a1a1a;
+            --light-bg: #f5f5f5;
+            --text-dark: #333;
+            --text-light: #fff;
+        }
+        
+        body {
+            background-color: var(--light-bg);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* 头部样式 */
+        header {
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1523851387002-5f45168c6e67?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--text-light);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background-color: rgba(0, 0, 0, 0.8);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--hongkong-gold);
+        }
+        
+        .logo span {
+            color: var(--hongkong-red);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--hongkong-gold);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        .hero {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+        }
+        
+        .hero h1 span {
+            color: var(--hongkong-gold);
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin-bottom: 30px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: var(--hongkong-red);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            border: 2px solid var(--hongkong-red);
+        }
+        
+        .cta-button:hover {
+            background-color: transparent;
+            color: var(--hongkong-red);
+        }
+        
+        /* 主体内容样式 */
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--hongkong-red);
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+        
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 3px;
+            background-color: var(--hongkong-gold);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        /* 美食分类 */
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .category-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .category-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .category-content {
+            padding: 20px;
+        }
+        
+        .category-content h3 {
+            color: var(--hongkong-red);
+            margin-bottom: 10px;
+        }
+        
+        /* 特色美食轮播 */
+        .carousel-container {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .carousel {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        
+        .carousel-item {
+            min-width: 100%;
+            position: relative;
+        }
+        
+        .carousel-img {
+            height: 500px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .carousel-caption {
+            position: absolute;
+            bottom: 0;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            width: 100%;
+            padding: 20px;
+        }
+        
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            font-size: 2rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .carousel-btn:hover {
+            background: rgba(230, 0, 18, 0.8);
+        }
+        
+        .carousel-btn.prev {
+            left: 20px;
+        }
+        
+        .carousel-btn.next {
+            right: 20px;
+        }
+        
+        /* 美食地图 */
+        .food-map {
+            background-color: var(--dark-bg);
+            color: white;
+        }
+        
+        .map-container {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 40px;
+        }
+        
+        .map-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .map-visual {
+            flex: 1;
+            min-width: 300px;
+            height: 400px;
+            background-color: #2a2a2a;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+        }
+        
+        .district {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background-color: var(--hongkong-red);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .district:hover {
+            transform: scale(1.1);
+            background-color: var(--hongkong-gold);
+            color: var(--dark-bg);
+        }
+        
+        .district span {
+            font-weight: bold;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        
+        .district-info {
+            display: none;
+            background-color: white;
+            color: var(--text-dark);
+            padding: 15px;
+            border-radius: 10px;
+            position: absolute;
+            top: -100px;
+            width: 200px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            z-index: 10;
+        }
+        
+        /* 页脚 */
+        footer {
+            background-color: var(--dark-bg);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column h3 {
+            color: var(--hongkong-gold);
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--hongkong-gold);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: rgba(0, 0, 0, 0.9);
+                flex-direction: column;
+                padding: 20px 0;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links li {
+                margin: 10px 0;
+                text-align: center;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .carousel-img {
+                height: 400px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .carousel-img {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 头部和导航 -->
+    <header>
+        <nav>
+            <div class="logo">探索<span>香港</span>美食</div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">首页</a></li>
+                <li><a href="#categories">美食分类</a></li>
+                <li><a href="#specialties">特色美食</a></li>
+                <li><a href="#map">美食地图</a></li>
+                <li><a href="#about">关于</a></li>
+            </ul>
+        </nav>
+        
+        <div class="hero" id="home">
+            <h1>探索<span>香港</span>美食文化</h1>
+            <p>香港是美食天堂，融合了中西饮食文化的精髓。从街头小吃到米其林餐厅，从传统点心到创新 fusion 菜，每一口都是独特的味觉体验。</p>
+            <a href="#categories" class="cta-button">开始美食探索</a>
+        </div>
+    </header>
+    
+    <!-- 美食分类部分 -->
+    <section class="container" id="categories">
+        <div class="section-title">
+            <h2>香港美食分类</h2>
+        </div>
+        <div class="category-grid">
+            <div class="category-card">
+                <div class="category-img" style="background-image: url('https://images.unsplash.com/photo-1563245372-f21724e3856d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                <div class="category-content">
+                    <h3>点心与茶楼文化</h3>
+                    <p>体验香港独特的饮茶文化，品尝虾饺、烧卖、肠粉等经典点心，感受传统茶楼的氛围。</p>
+                </div>
+            </div>
+            
+            <div class="category-card">
+                <div class="category-img" style="background-image: url('https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                <div class="category-content">
+                    <h3>街头小吃</h3>
+                    <p>探索街头巷尾的美食宝藏：鸡蛋仔、鱼蛋、碗仔翅、格仔饼等，体验地道香港风味。</p>
+                </div>
+            </div>
+            
+            <div class="category-card">
+                <div class="category-img" style="background-image: url('https://images.unsplash.com/photo-1563245372-f21724e3856d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                <div class="category-content">
+                    <h3>烧腊与海鲜</h3>
+                    <p>品尝香港著名的烧鹅、叉烧、乳猪，以及新鲜的海鲜料理，感受粤菜的精髓。</p>
+                </div>
+            </div>
+            
+            <div class="category-card">
+                <div class="category-img" style="background-image: url('https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                <div class="category-content">
+                    <h3>甜品与饮品</h3>
+                    <p>杨枝甘露、红豆沙、丝袜奶茶、菠萝油等经典港式甜品与饮品，完美结束一餐。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 特色美食轮播 -->
+    <section id="specialties">
+        <div class="container">
+            <div class="section-title">
+                <h2>香港特色美食</h2>
+            </div>
+            <div class="carousel-container">
+                <div class="carousel" id="carousel">
+                    <div class="carousel-item">
+                        <div class="carousel-img" style="background-image: url('https://images.unsplash.com/photo-1563245372-f21724e3856d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');"></div>
+                        <div class="carousel-caption">
+                            <h3>港式烧味</h3>
+                            <p>烧鹅、叉烧、乳猪和烧肉是香港烧味的代表，外皮酥脆，肉质鲜嫩多汁，是香港饮食文化的象征。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="carousel-item">
+                        <div class="carousel-img" style="background-image: url('https://images.unsplash.com/photo-1586190848861-99aa4a171e90?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');"></div>
+                        <div class="carousel-caption">
+                            <h3>经典点心</h3>
+                            <p>虾饺、烧卖、凤爪、肠粉等点心品种繁多，是香港饮茶文化中不可或缺的一部分。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="carousel-item">
+                        <div class="carousel-img" style="background-image: url('https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');"></div>
+                        <div class="carousel-caption">
+                            <h3>街头小吃</h3>
+                            <p>鸡蛋仔、鱼蛋、碗仔翅等街头小吃价格亲民，味道独特，是体验香港市井文化的绝佳方式。</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-btn prev" id="prevBtn">&#10094;</button>
+                <button class="carousel-btn next" id="nextBtn">&#10095;</button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 美食地图 -->
+    <section class="food-map" id="map">
+        <div class="container">
+            <div class="section-title">
+                <h2 style="color: var(--hongkong-gold);">香港美食地图</h2>
+            </div>
+            <div class="map-container">
+                <div class="map-info">
+                    <h3>探索各区美食热点</h3>
+                    <p>香港各区都有独特的美食文化，从旺角的街头小吃到中环的高档餐厅，从深水埗的传统小馆到铜锣湾的创新料理。</p>
+                    <p>点击地图上的区域，探索该区的特色美食推荐！</p>
+                    <div id="district-info">
+                        <h4>选择区域查看详情</h4>
+                        <p>点击左侧地图上的区域，了解该区的特色美食和推荐餐厅。</p>
+                    </div>
+                </div>
+                <div class="map-visual">
+                    <div class="district" style="top: 20%; left: 30%;" data-district="central">
+                        <span>中环</span>
+                        <div class="district-info">
+                            <h4>中环</h4>
+                            <p>高档餐厅、米其林星级食府、兰桂坊酒吧街</p>
+                            <p>推荐：镛记酒家、莲香楼</p>
+                        </div>
+                    </div>
+                    
+                    <div class="district" style="top: 60%; left: 40%;" data-district="mongkok">
+                        <span>旺角</span>
+                        <div class="district-info">
+                            <h4>旺角</h4>
+                            <p>街头小吃天堂，夜市美食集中地</p>
+                            <p>推荐：肥姐小食店、满记甜品</p>
+                        </div>
+                    </div>
+                    
+                    <div class="district" style="top: 40%; left: 60%;" data-district="tsimshatsui">
+                        <span>尖沙咀</span>
+                        <div class="district-info">
+                            <h4>尖沙咀</h4>
+                            <p>多元文化美食，海景餐厅集中地</p>
+                            <p>推荐：澳洲牛奶公司、珍妮曲奇</p>
+                        </div>
+                    </div>
+                    
+                    <div class="district" style="top: 70%; left: 70%;" data-district="causewaybay">
+                        <span>铜锣湾</span>
+                        <div class="district-info">
+                            <h4>铜锣湾</h4>
+                            <p>购物与美食结合，日式料理集中地</p>
+                            <p>推荐：一兰拉面、义顺牛奶公司</p>
+                        </div>
+                    </div>
+                    
+                    <div class="district" style="top: 50%; left: 20%;" data-district="shamshuipo">
+                        <span>深水埗</span>
+                        <div class="district-info">
+                            <h4>深水埗</h4>
+                            <p>传统港式美食，平民价格，地道风味</p>
+                            <p>推荐：刘森记面家、维记咖啡粉面</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 页脚 -->
+    <footer id="about">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>探索香港美食</h3>
+                    <p>本网站致力于展示香港丰富多样的美食文化，帮助游客和美食爱好者探索香港独特的饮食体验。</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>快速链接</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">首页</a></li>
+                        <li><a href="#categories">美食分类</a></li>
+                        <li><a href="#specialties">特色美食</a></li>
+                        <li><a href="#map">美食地图</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>联系信息</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> 香港美食探索中心</li>
+                        <li><i class="fas fa-phone"></i> +852 1234 5678</li>
+                        <li><i class="fas fa-envelope"></i> info@hkfoodexplorer.com</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>关注我们</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+                        <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                        <li><a href="#"><i class="fab fa-youtube"></i> YouTube</a></li>
+                        <li><a href="#"><i class="fab fa-tiktok"></i> TikTok</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 探索香港美食. 保留所有权利. | 本网站仅用于展示目的</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // 移动端菜单切换
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        
+        // 轮播功能
+        const carousel = document.getElementById('carousel');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const carouselItems = document.querySelectorAll('.carousel-item');
+        
+        let currentIndex = 0;
+        const totalItems = carouselItems.length;
+        
+        function updateCarousel() {
+            carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+        
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % totalItems;
+            updateCarousel();
+        });
+        
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + totalItems) % totalItems;
+            updateCarousel();
+        });
+        
+        // 自动轮播
+        setInterval(() => {
+            currentIndex = (currentIndex + 1) % totalItems;
+            updateCarousel();
+        }, 5000);
+        
+        // 美食地图交互
+        const districts = document.querySelectorAll('.district');
+        const districtInfo = document.getElementById('district-info');
+        
+        districts.forEach(district => {
+            district.addEventListener('mouseenter', () => {
+                const info = district.querySelector('.district-info');
+                info.style.display = 'block';
+            });
+            
+            district.addEventListener('mouseleave', () => {
+                const info = district.querySelector('.district-info');
+                info.style.display = 'none';
+            });
+            
+            district.addEventListener('click', () => {
+                const districtName = district.getAttribute('data-district');
+                const info = district.querySelector('.district-info').innerHTML;
+                districtInfo.innerHTML = info;
+            });
+        });
+        
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                if(this.getAttribute('href') === '#') return;
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // 关闭移动端菜单
+                    if(navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

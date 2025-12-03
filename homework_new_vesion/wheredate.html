@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>網路資源鏈接</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            padding: 30px 0;
+            margin-bottom: 30px;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #7f8c8d;
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .search-bar {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+        
+        .search-bar input {
+            width: 60%;
+            padding: 12px 20px;
+            border: 1px solid #ddd;
+            border-radius: 30px;
+            font-size: 1rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .categories {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .category-btn {
+            padding: 8px 16px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .category-btn:hover, .category-btn.active {
+            background-color: #3498db;
+            color: white;
+        }
+        
+        .links-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .link-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .link-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+        }
+        
+        .link-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        
+        .link-url {
+            color: #3498db;
+            text-decoration: none;
+            word-break: break-all;
+            display: block;
+            margin-bottom: 15px;
+        }
+        
+        .link-description {
+            color: #7f8c8d;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .link-source {
+            display: inline-block;
+            background-color: #ecf0f1;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            color: #7f8c8d;
+        }
+        
+        .link-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+            font-size: 0.85rem;
+            color: #95a5a6;
+        }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }      
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            color: #7f8c8d;
+            border-top: 1px solid #ecf0f1;
+        }
+        
+        @media (max-width: 768px) {
+            .links-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .search-bar input {
+                width: 80%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>網路資源鏈接</h1>
+            <p class="subtitle">来自各個網頁的精心捕描的超鏈接集合</p>
+        </header>
+        <div class="links-container">
+            <div class="link-card">
+                <h3 class="link-title">上水廣場</h3>
+                <a href="https://zh.wikipedia.org/wiki/%E4%B8%8A%E6%B0%B4%E5%BB%A3%E5%A0%B4" class="link-url" target="_blank">https://zh.wikipedia.org/wiki/%E4%B8%8A%E6%B0%B4%E5%BB%A3%E5%A0%B4</a>
+                <p class="link-description">上水廣場（英語：Landmark North）為香港北區的大型商場群，分兩期發展。第一期位於港鐵上水站對面，名為「上水廣場」；第二期位於彩發街2號，是前工廈晉科中心的活化項目，名為「上水廣場2」。上水廣場樓高5層，其中2樓至5樓為購物樓層，設150間商舖；6樓至22樓為辦公大樓。發展商為新鴻基地產，於1995年正式開幕。上水廣場頂部外型設計獨特，商場是東鐵綫沿線的主要購物中心，也是區內最大型的購物商場，而地面層則為上水巴士總站所在地。而上水廣場2同樣是樓高5層，為工廈晉科中心的活化項目。晉科中心是一個1995年入伙的5層式工貿大廈，新鴻基地產於2016年申請改變土地用途，於2018年宣佈活化，並於2021年將該廈命名為「上水廣場2」，惟未公布何時開幕。兩期商場面積合共約33萬平方呎，商業樓面約40萬平方呎，總共約73萬平方呎。</p>
+                <span class="link-source">維基百科</span>
+                <div class="link-meta">
+                    <span>添加者：Franky</span>
+                    <span>類別:benwebsite</span>
+                </div>
+            </div>
+            
+            <div class="link-card">
+                <h3 class="link-title">北區公園</h3>
+                <a href="https://zh.wikipedia.org/zh-tw/%E5%8C%97%E5%8D%80%E5%85%AC%E5%9C%92" class="link-url" target="_blank">https://zh.wikipedia.org/zh-tw/%E5%8C%97%E5%8D%80%E5%85%AC%E5%9C%92</a>
+                <p class="link-description">北區公園（英語：North District Park），原稱北區中央公園，是香港新界粉嶺／上水新市鎮以至北區的主要大型公園。公園位於粉嶺和上水之間，北起掃管埔村，沿鐵路及天平邨向南伸展至粉嶺圍，佔地達8.605公頃，於1987年1月10日動工興建[來源請求]，並於1990年3月10日由當時的區域市政局主席張人龍主持開幕，公園現時由康樂及文化事務署管理。公園中間被掃管埔路分隔為2個主要部分: 第1期（靜態設施）及第2期（動態設施）。</p>
+                <span class="link-source">維基百科</span>
+                <div class="link-meta">
+                    <span>添加者：Franky</span>
+                    <span>類別:benwebsite</span>
+                </div>
+            </div>
+            
+            <div class="link-card">
+                <h3 class="link-title">龍躍頭文物徑</h3>
+                <a href="https://zh.wikipedia.org/wiki/%E9%BE%8D%E8%BA%8D%E9%A0%AD%E6%96%87%E7%89%A9%E5%BE%91" class="link-url" target="_blank">https://zh.wikipedia.org/wiki/%E9%BE%8D%E8%BA%8D%E9%A0%AD%E6%96%87%E7%89%A9%E5%BE%91</a>
+                <p class="link-description">龍躍頭文物徑 （英語：Lung Yeuk Tau Heritage Trail）位於香港新界粉嶺聯和墟東北的龍躍頭，是香港政府於新界設立的第二條文物徑。 這條文物徑經古物諮詢委員會、古物古蹟辦事處、當地居民、北區區議會、香港賽馬會、衛奕信勳爵文物信託及香港旅遊發展局的鼎力支持下， 於1999年12月4日正式開放，供市民遊覽。被古物古蹟辦事處列入龍躍頭文物徑的文物共有12項</p>
+                <span class="link-source">維基百科</span>
+                <div class="link-meta">
+                    <span>添加者：Franky</span>
+                    <span>類別:benwebsite</span>
+                </div>
+            </div>
+            
+            <div class="link-card">
+                <h3 class="link-title">deepseek</h3>
+                <a href="https://chat.deepseek.com/a/chat/s/7b57c592-187f-44ea-8cbf-88127e68a1ef" class="link-url" target="_blank">https://chat.deepseek.com/a/chat/s/7b57c592-187f-44ea-8cbf-88127e68a1ef</a>
+                <p class="link-description">deepseek_for_all_website</p>
+
+                <span class="link-source">DEEPSEEK (AI)</span>
+                <div class="link-meta">
+                    <span>添加者：Franky</span>
+                    <span>類別：ALL WEB</span>
+                </div>
+            </div>
+            
+            <div class="link-card">
+                <h3 class="link-title">青山灣海濱長廊</h3>
+                <a href="https://zh.wikipedia.org/wiki/%E9%9D%92%E5%B1%B1%E7%81%A3%E6%B5%B7%E6%BF%B1%E9%95%B7%E5%BB%8A" class="link-url" target="_blank">https://zh.wikipedia.org/wiki/%E9%9D%92%E5%B1%B1%E7%81%A3%E6%B5%B7%E6%BF%B1%E9%95%B7%E5%BB%8A</a>
+                <p class="link-description">海濱長廊建在屯門避風塘與青山灣泳灘之間的防波堤上，北為屯門避風塘南為青山灣泳灘，因而既是海上防波堤亦是陸上海濱長廊之建築物，其建築特色在香港甚至世界各地也極為特別和罕見，長廊之總面積約八千平方多米而總長度為八百多米，可360度全海景飽覽避風塘與青山灣海岸景致，亦能望青山灣西南方對岸大嶼山至赤臘角香港國際機場及港珠澳大橋人工島方向之遠景，長廊對岸因向西南方所以在黃昏時分可觀賞日落金黃景致，襯托長廊內的地面鋪設上深淺間紅色地磚砌花，構成了一幅香港新景緻圖案。</p>
+                <span class="link-source">維基百科</span>
+                <div class="link-meta">
+                    <span>添加者：Franky</span>
+                    <span>類別：STARFISHWEBSITE</span>
+                </div>
+            </div>
+            
+            <div class="link-card">
+                <h3 class="link-title">屯門碼頭</h3>
+                <a href="https://zh.wikipedia.org/wiki/%E5%B1%AF%E9%96%80%E7%A2%BC%E9%A0%AD" class="link-url" target="_blank">https://zh.wikipedia.org/wiki/%E5%B1%AF%E9%96%80%E7%A2%BC%E9%A0%AD</a>
+                <p class="link-description">屯門碼頭（英語：Tuen Mun Ferry Pier，又稱屯門客運碼頭、屯門渡輪碼頭）是香港新界屯門新市鎮蝴蝶灣的渡輪碼頭，亦為香港第三個連接港澳碼頭，位於蝴蝶灣、海翠花園對出，於1986年11月啟用。</p>
+                <span class="link-source">維基百科</span>
+                <div class="link-meta">
+                    <span>添加者：Franky</span>
+                    <span>類別：STARFISHWEBSITE</span>
+                </div>
+            
+            </div>
+            
+            <div class="link-card">
+                <h3 class="link-title">屯門市廣場</h3>
+                <a href="https://zh.wikipedia.org/wiki/%E5%B1%AF%E9%96%80%E5%B8%82%E5%BB%A3%E5%A0%B4" class="link-url" target="_blank">https://zh.wikipedia.org/wiki/%E5%B1%AF%E9%96%80%E5%B8%82%E5%BB%A3%E5%A0%B4</a>
+                <p class="link-description">屯門市廣場（英語：Tuen Mun Town Plaza；風格化：tmtplaza）是位於香港新界屯門市中心的大型綜合購物商場和私人屋苑，信和集團的旗艦商場和住宅之一；於1987至1992年間在青山灣避風塘填海地及黃家圍的原址分3期建成，1、2期由關善明建築師樓設計、第3期由呂元祥建築師事務所設計，為新界西部的大型購物商場及住宅發展項目，也是屯門區最大的購物商場。承建商是中國海外房屋工程有限公司。鄰近設置有輕鐵市中心站、杯渡站、屯馬綫屯門站和巴士總站。屯門市廣場共分為3期，第1、2期為商場及住宅；第3期則設有全香港面積最大的香港賽馬會投注站。</p>
+                <span class="link-source">維基百科</span>
+                <div class="link-meta">
+                    <span>添加者：Franky</span>
+                    <span>類別：STARFISHWEBSITE</span>
+                </div>
+            </div>
+            
+            <div class="link-card">
+                <h3 class="link-title">V city</h3>
+                <a href="https://zh.wikipedia.org/wiki/V_city" class="link-url" target="_blank">https://zh.wikipedia.org/wiki/V_city</a>
+                <p class="link-description">V city是香港屯門新市鎮內新鴻基地產旗下的商場，位於新界屯門區港鐵屯門站旁，坐落屯門河東岸，是屯門市中心其中一個大型商場。項目總投資額約25億港元，商場面積達30萬平方呎，樓高3層，於2012年12月落成，原預計2013年5月開幕，惟內部裝修工程延誤，最後延至2013年8月1日起試業，並於同年第三季舉行正式開幕禮。商場上蓋為住宅項目瓏門，而屯門站公共運輸交匯處則位於商場地面。整個項目所在位置前身為因為興建九廣西鐵（現屯馬綫）而需要拆卸的新發邨以及屯門遊樂場。</p>
+                <span class="link-source">維基百科</span>
+                <div class="link-meta">
+                    <span>添加者：Franky</span>
+                    <span>類別：FRANKYWEBSITE</span>
+                </div>
+            </div>
+            
+            <div class="link-card">
+                <h3 class="link-title">GOOGLE評論</h3>
+                <a href="https://share.google/sTCf2pLvtsmWZAsI4" class="link-url" target="_blank">https://share.google/sTCf2pLvtsmWZAsI4</a>
+                <p class="link-description">在屯門西鐵站及輕鐵旁， 屯門、元朗、東涌區居民， 由於這個商場用天橋與屯門市廣場華都商場連成一体， 協同效應下面積非常之大， 真的吃喝玩樂一應俱全。 V city裏面亦有很多商輔及美食廣場， 每個商店面積屬於大型， 所以同一個品牌商店裏面的產品，亦比九龍區的商店較多選擇，所以值得一行， 同時間隔整潔， 通道寬闊， 亦有停車優惠， 真係路過屯門值得到這個商場一遊。</p>
+                <span class="link-source">GOOGLE_MAP</span>
+                <div class="link-meta">
+                    <span>添加者：FRANKY</span>
+                    <span>類別：FRANKYWEBSITE</span>
+                </div>
+            </div>
+            <div class="link-card">
+                <h3 class="link-title">香港歷史</h3>
+                <a href="https://zh.wikipedia.org/wiki/%E9%A6%99%E6%B8%AF%E6%AD%B7%E5%8F%B2#" class="link-url" target="_blank">https://zh.wikipedia.org/wiki/%E9%A6%99%E6%B8%AF%E6%AD%B7%E5%8F%B2#</a>
+                <p class="link-description">香港歷史始於超過公元前3萬年的舊石器時代於華南及中南半島一帶活動的百越族，其後被秦朝征服後方踏入信史的開端，但地處華南一隅的偏遠荒蕪邊陲，一直人口稀少並只有漁業及少量農業活動，在1841年香港開埠前於歷史舞台上的影響微乎其微；自割.......</p>
+                <span class="link-source">維基百科</span>
+                <div class="link-meta">
+                    <span>添加者：FRANKY</span>
+                    <span>類別:CHANPI</span>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>超鏈接顯示頁面 &copy; 2025 | 來自各種網路資源的顯示</p>
+            <a href="index.html" class="footer-link">返回主頁</a>
+        </footer>
+    </div>
+
+    <script>
+        // Simple search functionality
+        document.querySelector('.search-bar input').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const linkCards = document.querySelectorAll('.link-card');
+            
+            linkCards.forEach(card => {
+                const title = card.querySelector('.link-title').textContent.toLowerCase();
+                const description = card.querySelector('.link-description').textContent.toLowerCase();
+                
+                if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+        
+        // Category filtering
+        const categoryButtons = document.querySelectorAll('.category-btn');
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all buttons
+                categoryButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                const category = this.textContent;
+                const linkCards = document.querySelectorAll('.link-card');
+                
+                if (category === '全頁') {
+                    linkCards.forEach(card => {
+                        card.style.display = 'block';
+                    });
+                } else {
+                    linkCards.forEach(card => {
+                        const cardCategory = card.querySelector('.link-meta span:last-child').textContent.replace('Category: ', '');
+                        if (cardCategory === category) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

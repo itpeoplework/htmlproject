@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>香港歷史時間線</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(rgba(0, 25, 66, 0.9), rgba(0, 25, 66, 0.95)), url('https://images.unsplash.com/photo-1530137153209-d23e645c8695?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 4rem 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        h1 {
+            font-size: 3.2rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.4rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .timeline {
+            position: relative;
+            margin: 3rem 0;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: #e63946;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+            border-radius: 3px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            margin-bottom: 3rem;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+        
+        .timeline-content {
+            padding: 25px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+        
+        .timeline-content:hover {
+            transform: translateY(-5px);
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-content::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            right: -10px;
+            background-color: white;
+            top: 30px;
+            border-radius: 50%;
+            z-index: 1;
+            box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            left: -10px;
+            background-color: white;
+            top: 30px;
+            border-radius: 50%;
+            z-index: 1;
+            box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            right: -12.5px;
+            background-color: #e63946;
+            border: 4px solid #f5f7fa;
+            top: 27.5px;
+            border-radius: 50%;
+            z-index: 2;
+        }
+        
+        .timeline-item:nth-child(even)::after {
+            left: -12.5px;
+        }
+        
+        .year {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #e63946;
+            margin-bottom: 10px;
+        }
+        
+        .event-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #001942;
+        }
+        
+        .event-description {
+            color: #555;
+            margin-bottom: 15px;
+        }
+        
+        .period-tag {
+            display: inline-block;
+            padding: 5px 12px;
+            background-color: #f0f4ff;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: #001942;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .image-placeholder {
+            height: 300px;
+            background-color: #e9ecef;
+            border-radius: 8px;
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            overflow: hidden;
+        }
+        
+        .image-placeholder i {
+            font-size: 3rem;
+            color: #aaa;
+        }
+        
+        .facts-section {
+            background-color: #001942;
+            color: white;
+            padding: 4rem 0;
+            margin-top: 4rem;
+            border-radius: 10px;
+        }
+        
+        .facts-title {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 2.5rem;
+        }
+        
+        .facts-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .fact-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 1.8rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .fact-card:hover {
+            transform: translateY(-5px);
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+        
+        .fact-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #e63946;
+        }
+        
+        .fact-title {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            color: #666;
+            border-top: 1px solid #ddd;
+        }
+        
+        @media screen and (max-width: 768px) {
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+            
+            .timeline-item::after {
+                left: 19px;
+            }
+            
+            .timeline-item:nth-child(odd) .timeline-content::after,
+            .timeline-item:nth-child(even) .timeline-content::after {
+                left: -10px;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+        }
+            .imgstyle {
+                width: 500px;
+                height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>香港歷史時間線</h1>
+        <p class="subtitle">由古代漁村到現代大都會，透過重要事件與轉變，探索香港豐富嘅歷史。</p>
+    </header>
+    
+    <div class="container">
+        <div class="timeline">
+            <!-- Timeline Item 1 -->
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="period-tag">古代時期</div>
+                    <div class="year">超過公元前3萬年</div>
+                    <h3 class="event-title">早期定居與帝制中國</h3>
+                    <div class="image-placeholder">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/7/71/HK_TST_%E5%B0%96%E6%B2%99%E5%92%80_Tsim_Sha_Tsui_%E6%BC%86%E5%92%B8%E9%81%93%E5%8D%97_Chatham_Road_South_%E9%A6%99%E6%B8%AF%E6%AD%B7%E5%8F%B2%E5%8D%9A%E7%89%A9%E9%A4%A8_Hong_Kong_Museum_of_History_August_2022_Px3_002.jpg" class="imgstyle" alt="香港歷史博物館">
+                    </div>
+                    <p class="event-description">舊石器時代於華南及中南半島一帶活動的百越族，其後被秦朝征服後方踏入信史的開端
+                        ，但地處華南一隅的偏遠荒蕪邊陲，一直人口稀少並只有漁業及少量農業活動
+                        ，在1841年香港開埠前於歷史舞台上的影響微乎其微</p>
+                </div>
+            </div>
+            
+            <!-- Timeline Item 2 -->
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="period-tag">開埠初期/香港割讓</div>
+                    <div class="year">1842年</div>
+                    <h3 class="event-title">南京條約與英國殖民</h3>
+                    <div class="image-placeholder">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/7/7f/%E5%8D%97%E4%BA%AC%E6%A2%9D%E7%B4%84%E4%B8%AD%E8%8B%B1%E6%96%87%E5%8E%9F%E6%9C%AC_%E8%8B%B1%E6%96%87%E6%A2%9D%E7%B4%84%E8%B5%B7%E8%A8%80_Treaty_of_Nanking_Treaty_EN_Begin.png" class="imgstyle" alt="南京條約">
+                    </div>
+                    <p class="event-description">香港割讓始於1842年，開埠則於1841年開始。1840年2月20日，英國政府連發4道訓令，任命義律為全權代表，派出遠征軍對中國用兵[8]:7。清政府派直隸總督琦善與英軍交涉，於是琦善作為欽差大臣到廣州，中英開始談判[8]:8。</p>
+                </div>
+            </div>
+            
+            <!-- Timeline Item 3 -->
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="period-tag">擴展期</div>
+                    <div class="year">1860 & 1898</div>
+                    <h3 class="event-title">九龍與新界</h3>
+                    <div class="image-placeholder">
+                       <img src="https://upload.wikimedia.org/wikipedia/commons/2/25/Pam%C4%9Btn%C3%AD_deska_podpisu_Pekingsk%C3%A9_smlouvy_28._%C5%99%C3%ADjna_1860%2C_%C4%8Ccheng-te.jpg" width="500" height="300" alt="北京條約">
+                    </div>
+                    <p class="event-description">英國再於1860年的《北京條約》及1898年的《展拓香港界址專條》分別割讓九龍半島及租借新界99年。</p>
+                </div>
+            </div>
+            
+            <!-- Timeline Item 4 -->
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="period-tag">第二次世界大戰</div>
+                    <div class="year">1941-1945</div>
+                    <h3 class="event-title">日佔時期</h3>
+                    <div class="image-placeholder">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/8/81/Hong_Kong_Museum_of_History%2C_The_Japanese_Occupation_%28Hong_Kong%29.jpg" class="imgstyle" alt="日佔香港">
+                    </div>
+                    <p class="event-description">英國和日本的關係在1930年代後期漸趨緊張。日軍於1938年10月在大亞灣登陸，隨後只用了短短10天便攻佔廣州，日軍同時封鎖香港邊境，並與駐港英軍對峙，而香港亦開始加緊備戰[21]。1939年9月歐戰爆發，納粹德國在1940年6月攻陷法國後再攻打英國，同年9月日本與納粹德國及義大利組成軸心國，因為法國及荷蘭已經淪陷，面對德軍入侵的英國又自顧不暇，日本於是趁機謀劃奪取當時由歐洲國家支配的東南亞，以搶佔東南亞的天然資源和港口。</p>
+                </div>
+            </div>
+            
+            <!-- Timeline Item 5 -->
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="period-tag">日本投降</div>
+                    <div class="year">1945-1946</div>
+                    <h3 class="event-title">日本無條件投降</h3>
+                    <div class="image-placeholder">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/1/19/ROC-CKSMH_Japanese_Instrument_of_Surrender_20131127_3.jpg" class="imgstyle" alt="日本投降香港">
+                    </div>
+                    <p class="event-description">1945年8月14日，日本宣布投降。8月15日，日本無條件投降。消息傳來，布政司詹森（後獲封爵士）隨即組織臨時政府。8月30日，海軍少將夏愨爵士率領英國太平洋艦隊抵港，成立臨時軍政府。香港日佔時期結束，當日遂定為重光紀念日。1945年9月16日，英國在舉行香港總督府受降儀式，中華民國亦獲邀派代表出席，由皇家海軍夏慤少將接受日本佔領地代表向盟軍投降，英日雙方在英方草擬的降書上簽字，確認佔領香港的日軍正式投降。香港重光初期暫時採取軍政府管治，並展開戰後重建工作，公共服務逐漸恢復正常。1946年5月1日，總督楊慕琦爵士回任，香港正式恢復民政統治。</p>
+                </div>
+            </div>
+            
+            <!-- Timeline Item 6 -->
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="period-tag">現代時期</div>
+                    <div class="year">1997</div>
+                    <h3 class="event-title">主權移交（回歸中國）</h3>
+                    <div class="image-placeholder">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/f/f6/%E5%BA%86%E7%A5%9D%E9%A6%99%E6%B8%AF%E5%9B%9E%E5%BD%92%E7%A5%96%E5%9B%BD25%E5%91%A8%E5%B9%B4%E5%A4%A7%E4%BC%9A%E6%9A%A8%E9%A6%99%E6%B8%AF%E7%89%B9%E5%88%AB%E8%A1%8C%E6%94%BF%E5%8C%BA%E7%AC%AC%E5%85%AD%E5%B1%8A%E6%94%BF%E5%BA%9C%E5%B0%B1%E8%81%8C%E5%85%B8%E7%A4%BC_20220701-4.png" class="imgstyle" alt="香港回歸中國">
+                    </div>
+                    <p class="event-description">1984年，中華人民共和國與英國簽訂《中英聯合聲明》並制定香港基本法，承諾實行一國兩制高度自治並自1997年7月1日起保障香港五十年不變，英國將香港主權移交中華人民共和國。</p>
+                </div>
+            </div>
+            
+            <!-- Timeline Item 7 -->
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="period-tag">21世紀</div>
+                    <div class="year">2000s-Present</div>
+                    <h3 class="event-title">近期發生</h3>
+                    <div class="image-placeholder">
+                        <img src="photo/youtube-block-area.webp" height="500" width="850" alt="香港社會運動">
+                    </div>
+                    <p class="event-description">21世紀的香港歷史以1997年回歸中國為起點，隨後經歷經濟增長、社會運動（如██████和████████），以及因《██████》帶來的政治緊張，最終受到新冠疫情的影響。</p>
+                </div>
+            </div>
+        </div>
+        
+            <div class="facts-section">
+            <h2 class="facts-title">香港重要事實</h2>
+            <div class="facts-container">
+                <div class="fact-card">
+                    <div class="fact-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="fact-title">人口</h3>
+                    <p>大約750萬人口，係世界上人口密度最高嘅地區之一。</p>
+                </div>
+                
+                <div class="fact-card">
+                    <div class="fact-icon">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <h3 class="fact-title">經濟</h3>
+                    <p>香港經濟正經歷溫和增長，但面臨挑戰。 近期表現方面，受出口強勁增長和本地需求擴張帶動，2025年第三季GDP按年增長3.8%。 然而，市民消費力受「北上消費」等因素影響，零售業銷售額持續疲弱。 就業市場保持穩定，但部分行業如零售業仍面臨壓力。</p>
+                </div>
+                
+                <div class="fact-card">
+                    <div class="fact-icon">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <h3 class="fact-title">法律制度</h3>
+                    <p>喺「一國兩制」框架下，結合英國普通法傳統同中方嘅習慣法元素。</p>
+                </div>
+                
+                <div class="fact-card">
+                    <div class="fact-icon">
+                        <i class="fas fa-language"></i>
+                    </div>
+                    <h3 class="fact-title">語言</h3>
+                    <p>廣東話同英文為官方語言，但普通話亦越嚟越普及有可能港人講██████將會成為歷█。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>香港歷史時間線網頁版權由chanpi所有 &copy; 2025 | 教育資源</p>
+        <p><a href="wheredate.html" target="_blank">資料來源</a></p>
+        <p><a href="index.html" target="_blank">返回主頁</a></p>
+    </footer>
+</body>
+</html>
